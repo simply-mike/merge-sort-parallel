@@ -3,7 +3,7 @@ import re
 import statistics
 
 ITER = 100
-ARRAY_SIZE = 10000000
+ARRAY_SIZE = 1000000
 MODE = 0  # 0 - random (typical case)
 NUM_PROCESSES = 4
 

@@ -17,8 +17,11 @@ project/
 │   ├── merge.c         # Implementation of merge sort, insertion sort, and hybrid sort functions
 │   ├── sequential.c    # Sequential merge sort implementation
 │   ├── mpi_sort.c      # Parallel merge sort using MPI
-│   └── hybrid_sort.c   # Hybrid merge sort implementation (merge sort + insertion sort)
+│   ├── hybrid_sort.c   # Hybrid merge sort implementation (merge sort + insertion sort)
+│   ├── utils.h         # Declarations of utility functions
+│   └── utils.c         # Implementation of array generation
 ├── Makefile            # Build script
+├── test.py             # Python script for testing
 └── README.md           # This documentation
 ```
 
@@ -29,7 +32,7 @@ project/
 - **OS:** Unix-like
 - **Compiler:** GCC, mpicc
 - **Interpreter:** Python 3
-- **MPI:** OpenMPI (e.g., install via `sudo apt install openmpi-bin libopenmpi-dev`)
+- **MPI:** OpenMPI
 - **Build Tool:** Make
 
 ---
@@ -124,3 +127,26 @@ The hybrid algorithm uses insertion sort for subarrays of size 32 or less, reduc
 
 ---
 
+## Benchmarking and Performance Testing
+
+A benchmarking script has been provided to test each sorting implementation (sequential, MPI-based, and hybrid). The script runs each implementation 100 times with an array of 1,000,000 random numbers, and then computes the average execution time and speedup of the MPI version relative to the sequential version.
+
+### Using the Python Script
+
+Run the script
+```bash
+python3 test.py
+```
+
+### Sample Test's Results
+
+```
+--------------------------------------------
+Average Sequential Merge Sort time: 0.078929 seconds
+Average MPI Merge Sort time:        0.029572 seconds
+Average Hybrid Merge Sort time:     0.053164 seconds
+Speedup (Sequential / MPI):         2.669049
+Speedup (Sequential / Hybrid):      1.484637
+--------------------------------------------
+```
+These results indicate that the MPI version achieves a significant speedup over the sequential version.
