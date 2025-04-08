@@ -28,6 +28,7 @@ project/
 
 - **OS:** Unix-like
 - **Compiler:** GCC, mpicc
+- **Interpreter:** Python 3
 - **MPI:** OpenMPI (e.g., install via `sudo apt install openmpi-bin libopenmpi-dev`)
 - **Build Tool:** Make
 

@@ -5,24 +5,25 @@
 #include <stdlib.h>
 #include <time.h>
 
+#ifdef DEBUG
 void is_sorted(int *data, int n) {
-  for (int i = 0; i < n - 1; ++i) {
-    if (data[i] > data[i+1]) {
-      printf("%d %d %d\n", i, data[i], data[i+1]);
+  for (int i = 0; i < n - 1; i++) {
+    if (data[i] > data[i + 1]) {
+      printf("%d %d %d\n", i, data[i], data[i + 1]);
       printf("array is not sorted \n");
       return;
     }
   }
-  printf(" GRATZ array is sorted \n");
-
+  printf("GRATZ array is sorted \n");
 }
+#endif
 
 int main(int argc, char *argv[]) {
   int rank, size, n = 1000000, mode = 0;
 
-  #if 1
-    n = 100;
-  #endif
+#ifdef DEBUG
+  n = 100;
+#endif
 
   MPI_Init(&argc, &argv);
   MPI_Comm_rank(MPI_COMM_WORLD, &rank);
@@ -63,13 +64,13 @@ int main(int argc, char *argv[]) {
     double end_time = MPI_Wtime();
     printf("MPI merge sort time: %f seconds\n", end_time - start_time);
 
-    #if 1
-    for(int i = 0; i < n; ++i) {
-      printf ("%d ", data[i]);
+#ifdef DEBUG
+    for (int i = 0; i < n; i++) {
+      printf("%d ", data[i]);
     }
     printf("\n");
     is_sorted(data, n);
-    #endif
+#endif
 
     free(data);
   }
